@@ -52,6 +52,6 @@ LOCAL_CFLAGS += -Wno-error=deprecated-declarations -Wno-error=deprecated
 endif
 LOCAL_CFLAGS += -O0
 
-include $(BUILD_EXECUTABLE)
+#include $(BUILD_EXECUTABLE)
 
 

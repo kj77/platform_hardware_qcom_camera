@@ -99,7 +99,7 @@ LOCAL_SHARED_LIBRARIES:= \
 LOCAL_MODULE_TAGS := optional
 
 LOCAL_MODULE:= mm-qcamera-app
-include $(BUILD_EXECUTABLE)
+#include $(BUILD_EXECUTABLE)
 endif
 
 ifeq ($(call is-vendor-board-platform,QCOM),true)
@@ -195,5 +195,5 @@ LOCAL_SHARED_LIBRARIES:= \
 LOCAL_MODULE_TAGS := optional
 
 LOCAL_MODULE:= libmm-qcamera
-include $(BUILD_SHARED_LIBRARY)
+#include $(BUILD_SHARED_LIBRARY)
 endif
