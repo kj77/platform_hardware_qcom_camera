@@ -52,6 +52,8 @@
 
 #define HDR_CONFIDENCE_THRESHOLD 0.4
 
+#define ARRAY_SIZE(a) (sizeof(a)/sizeof((a)[0]))
+
 namespace qcamera {
 
 cam_capability_t *gCamCapability[MM_CAMERA_MAX_NUM_SENSORS];
@@ -1329,8 +1331,7 @@ int QCamera2HardwareInterface::closeCamera()
     return rc;
 }
 
-#define CAM0_PIC_TBL_SIZE 11
-static cam_dimension_t new_pic_sizes_cam0[CAM0_PIC_TBL_SIZE] = {
+static cam_dimension_t new_pic_sizes_cam0[] = {
     {3264, 2448},
     {3104, 1746},
     {2592, 1944},
@@ -1344,8 +1345,7 @@ static cam_dimension_t new_pic_sizes_cam0[CAM0_PIC_TBL_SIZE] = {
     {320, 240}
 };
 
-#define CAM0_VID_TBL_SIZE 7
-static cam_dimension_t new_vid_sizes_cam0[CAM0_VID_TBL_SIZE] = {
+static cam_dimension_t new_vid_sizes_cam0[] = {
     {1920, 1080},
     {1280, 720},
     {720, 480},
@@ -1355,8 +1355,7 @@ static cam_dimension_t new_vid_sizes_cam0[CAM0_VID_TBL_SIZE] = {
     {176, 144}
 };
 
-#define CAM0_PRVW_TBL_SIZE 9
-static cam_dimension_t new_prvw_sizes_cam0[CAM0_PRVW_TBL_SIZE] = {
+static cam_dimension_t new_prvw_sizes_cam0[] = {
     {1600, 1200},
     {1280, 720},
     {960, 720},
@@ -1368,23 +1367,20 @@ static cam_dimension_t new_prvw_sizes_cam0[CAM0_PRVW_TBL_SIZE] = {
     {176, 144}
 };
 
-#define CAM1_PIC_TBL_SIZE 3
-static cam_dimension_t new_pic_sizes_cam1[CAM1_PIC_TBL_SIZE] = {
+static cam_dimension_t new_pic_sizes_cam1[] = {
     {640, 480},
     {480, 320},
     {320, 240}
 };
 
-#define CAM1_VID_TBL_SIZE 4
-static cam_dimension_t new_vid_sizes_cam1[CAM1_VID_TBL_SIZE] = {
+static cam_dimension_t new_vid_sizes_cam1[] = {
     {640, 480},
     {352, 288},
     {320, 240},
     {176, 144}
 };
 
-#define CAM1_PRVW_TBL_SIZE 5
-static cam_dimension_t new_prvw_sizes_cam1[CAM1_PRVW_TBL_SIZE] = {
+static cam_dimension_t new_prvw_sizes_cam1[] = {
     {640, 480},
     {480, 320},
     {352, 288},
@@ -1392,13 +1388,11 @@ static cam_dimension_t new_prvw_sizes_cam1[CAM1_PRVW_TBL_SIZE] = {
     {176, 144}
 };
 
-#define CAM0_FPS_TBL_RANGE 1
-static cam_fps_range_t new_fps_ranges_cam0[CAM0_FPS_TBL_RANGE] = {
+static cam_fps_range_t new_fps_ranges_cam0[] = {
     {7.5, 30}
 };
 
-#define CAM1_FPS_TBL_RANGE 1
-static cam_fps_range_t new_fps_ranges_cam1[CAM1_FPS_TBL_RANGE] = {
+static cam_fps_range_t new_fps_ranges_cam1[] = {
     {7.5, 30}
 };
 
@@ -1422,7 +1416,7 @@ int QCamera2HardwareInterface::initCapabilities(uint32_t cameraId,
     ATRACE_CALL();
     int rc = NO_ERROR;
     QCameraHeapMemory *capabilityHeap = NULL;
-    int i, x;
+    size_t i, x;
 
     /* Allocate memory for capability buffer */
     capabilityHeap = new QCameraHeapMemory(QCAMERA_ION_USE_CACHE);
@@ -1459,50 +1453,50 @@ int QCamera2HardwareInterface::initCapabilities(uint32_t cameraId,
 
     // Inject modified video/preview size tables
     if (gCamCapability[cameraId]->position == CAM_POSITION_BACK) {
-        for (i = 0; i < CAM0_PIC_TBL_SIZE; i++)
+        for (i = 0; i < ARRAY_SIZE(new_pic_sizes_cam0); i++)
             gCamCapability[cameraId]->picture_sizes_tbl[i] = new_pic_sizes_cam0[i];
-        gCamCapability[cameraId]->picture_sizes_tbl_cnt = CAM0_PIC_TBL_SIZE;
+        gCamCapability[cameraId]->picture_sizes_tbl_cnt = ARRAY_SIZE(new_pic_sizes_cam0);
 
-        for (i = 0; i < CAM0_VID_TBL_SIZE; i++)
+        for (i = 0; i < ARRAY_SIZE(new_vid_sizes_cam0); i++)
             gCamCapability[cameraId]->video_sizes_tbl[i] = new_vid_sizes_cam0[i];
-        gCamCapability[cameraId]->video_sizes_tbl_cnt = CAM0_VID_TBL_SIZE;
+        gCamCapability[cameraId]->video_sizes_tbl_cnt = ARRAY_SIZE(new_vid_sizes_cam0);
 
-        for (i = 0; i < CAM0_VID_TBL_SIZE; i++)
+        for (i = 0; i < ARRAY_SIZE(new_vid_sizes_cam0); i++)
             gCamCapability[cameraId]->livesnapshot_sizes_tbl[i] = new_vid_sizes_cam0[i];
-        gCamCapability[cameraId]->livesnapshot_sizes_tbl_cnt = CAM0_VID_TBL_SIZE;
+        gCamCapability[cameraId]->livesnapshot_sizes_tbl_cnt = ARRAY_SIZE(new_vid_sizes_cam0);
 
-        for (i = 0; i < CAM0_PRVW_TBL_SIZE; i++)
+        for (i = 0; i < ARRAY_SIZE(new_prvw_sizes_cam0); i++)
             gCamCapability[cameraId]->preview_sizes_tbl[i] = new_prvw_sizes_cam0[i];
-        gCamCapability[cameraId]->preview_sizes_tbl_cnt = CAM0_PRVW_TBL_SIZE;
+        gCamCapability[cameraId]->preview_sizes_tbl_cnt = ARRAY_SIZE(new_prvw_sizes_cam0);
 
     } else if (gCamCapability[cameraId]->position == CAM_POSITION_FRONT) {
-        for (i = 0; i < CAM1_PIC_TBL_SIZE; i++)
+        for (i = 0; i < ARRAY_SIZE(new_pic_sizes_cam1); i++)
             gCamCapability[cameraId]->picture_sizes_tbl[i] = new_pic_sizes_cam1[i];
-        gCamCapability[cameraId]->picture_sizes_tbl_cnt = CAM1_PIC_TBL_SIZE;
+        gCamCapability[cameraId]->picture_sizes_tbl_cnt = ARRAY_SIZE(new_pic_sizes_cam1);
 
-        for (i = 0; i < CAM1_VID_TBL_SIZE; i++)
+        for (i = 0; i < ARRAY_SIZE(new_vid_sizes_cam1); i++)
             gCamCapability[cameraId]->video_sizes_tbl[i] = new_vid_sizes_cam1[i];
-        gCamCapability[cameraId]->video_sizes_tbl_cnt = CAM1_VID_TBL_SIZE;
+        gCamCapability[cameraId]->video_sizes_tbl_cnt = ARRAY_SIZE(new_vid_sizes_cam1);
 
-        for (i = 0; i < CAM1_PRVW_TBL_SIZE; i++)
+        for (i = 0; i < ARRAY_SIZE(new_prvw_sizes_cam1); i++)
             gCamCapability[cameraId]->preview_sizes_tbl[i] = new_prvw_sizes_cam1[i];
-        gCamCapability[cameraId]->preview_sizes_tbl_cnt = CAM1_PRVW_TBL_SIZE;
+        gCamCapability[cameraId]->preview_sizes_tbl_cnt = ARRAY_SIZE(new_prvw_sizes_cam1);
 
-        for (i = 0; i < CAM1_VID_TBL_SIZE; i++)
+        for (i = 0; i < ARRAY_SIZE(new_vid_sizes_cam1); i++)
             gCamCapability[cameraId]->livesnapshot_sizes_tbl[i] = new_vid_sizes_cam1[i];
-        gCamCapability[cameraId]->livesnapshot_sizes_tbl_cnt = CAM1_VID_TBL_SIZE;
+        gCamCapability[cameraId]->livesnapshot_sizes_tbl_cnt = ARRAY_SIZE(new_vid_sizes_cam1);
     }
 
     // Inject modified FPS range
         if (gCamCapability[cameraId]->position == CAM_POSITION_BACK) {
-        for (i = 0; i < CAM0_FPS_TBL_RANGE; i++)
+        for (i = 0; i < ARRAY_SIZE(new_fps_ranges_cam0); i++)
             gCamCapability[cameraId]->fps_ranges_tbl[i] = new_fps_ranges_cam0[i];
-        gCamCapability[cameraId]->fps_ranges_tbl_cnt = CAM0_FPS_TBL_RANGE;
+        gCamCapability[cameraId]->fps_ranges_tbl_cnt = ARRAY_SIZE(new_fps_ranges_cam0);
 
     } else if (gCamCapability[cameraId]->position == CAM_POSITION_FRONT) {
-        for (i = 0; i < CAM1_FPS_TBL_RANGE; i++)
+        for (i = 0; i < ARRAY_SIZE(new_fps_ranges_cam1); i++)
             gCamCapability[cameraId]->fps_ranges_tbl[i] = new_fps_ranges_cam1[i];
-        gCamCapability[cameraId]->fps_ranges_tbl_cnt = CAM1_FPS_TBL_RANGE;
+        gCamCapability[cameraId]->fps_ranges_tbl_cnt = ARRAY_SIZE(new_fps_ranges_cam1);
     }
 
     //copy the preview sizes and video sizes lists because they
