@@ -1368,15 +1368,26 @@ static cam_dimension_t new_prvw_sizes_cam0[CAM0_PRVW_TBL_SIZE] = {
     {320, 240}
 };
 
-#define CAM1_VID_TBL_SIZE 2
-static cam_dimension_t new_vid_sizes_cam1[CAM1_VID_TBL_SIZE] = {
+#define CAM1_PIC_TBL_SIZE 4
+static cam_dimension_t new_pic_sizes_cam1[CAM1_PIC_TBL_SIZE] = {
     {640, 480},
+    {640, 350},
+    {576, 432},
     {320, 240}
 };
 
-#define CAM1_PRVW_TBL_SIZE 3
+#define CAM1_VID_TBL_SIZE 4
+static cam_dimension_t new_vid_sizes_cam1[CAM1_VID_TBL_SIZE] = {
+    {640, 480},
+    {640, 350},
+    {576, 432},
+    {320, 240}
+};
+
+#define CAM1_PRVW_TBL_SIZE 4
 static cam_dimension_t new_prvw_sizes_cam1[CAM1_PRVW_TBL_SIZE] = {
     {640, 480},
+    {640, 350},
     {576, 432},
     {320, 240}
 };
