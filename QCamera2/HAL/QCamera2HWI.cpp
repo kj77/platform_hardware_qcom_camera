@@ -1329,67 +1329,67 @@ int QCamera2HardwareInterface::closeCamera()
     return rc;
 }
 
-#define CAM0_PIC_TBL_SIZE 15
+#define CAM0_PIC_TBL_SIZE 11
 static cam_dimension_t new_pic_sizes_cam0[CAM0_PIC_TBL_SIZE] = {
     {3264, 2448},
-    {3200, 2400},
-    {3200, 1800},
+    {3104, 1746},
     {2592, 1944},
-    {2048, 1536},
+    {2560, 1440},
     {1920, 1080},
-    {1600, 1200},
-    {1280, 768},
+    {1632, 1224},
     {1280, 720},
-    {1024, 768},
     {800, 600},
-    {800, 480},
-    {720, 480},
     {640, 480},
+    {480, 320},
     {320, 240}
 };
 
-#define CAM0_VID_TBL_SIZE 6
+#define CAM0_VID_TBL_SIZE 7
 static cam_dimension_t new_vid_sizes_cam0[CAM0_VID_TBL_SIZE] = {
     {1920, 1080},
     {1280, 720},
-    {800, 480},
     {720, 480},
     {640, 480},
-    {320, 240}
+    {352, 288},
+    {320, 240},
+    {176, 144}
 };
 
-#define CAM0_PRVW_TBL_SIZE 6
+#define CAM0_PRVW_TBL_SIZE 9
 static cam_dimension_t new_prvw_sizes_cam0[CAM0_PRVW_TBL_SIZE] = {
-    {1920, 1080},
-    {1440, 1080},
+    {1600, 1200},
     {1280, 720},
+    {960, 720},
     {720, 480},
     {640, 480},
-    {320, 240}
+    {320, 240},
+    {352, 228},
+    {320, 240},
+    {176, 144}
 };
 
-#define CAM1_PIC_TBL_SIZE 4
+#define CAM1_PIC_TBL_SIZE 3
 static cam_dimension_t new_pic_sizes_cam1[CAM1_PIC_TBL_SIZE] = {
     {640, 480},
-    {640, 350},
-    {576, 432},
+    {480, 320},
     {320, 240}
 };
 
 #define CAM1_VID_TBL_SIZE 4
 static cam_dimension_t new_vid_sizes_cam1[CAM1_VID_TBL_SIZE] = {
     {640, 480},
-    {640, 350},
-    {576, 432},
-    {320, 240}
+    {352, 288},
+    {320, 240},
+    {176, 144}
 };
 
-#define CAM1_PRVW_TBL_SIZE 4
+#define CAM1_PRVW_TBL_SIZE 5
 static cam_dimension_t new_prvw_sizes_cam1[CAM1_PRVW_TBL_SIZE] = {
     {640, 480},
-    {640, 350},
-    {576, 432},
-    {320, 240}
+    {480, 320},
+    {352, 288},
+    {320, 240},
+    {176, 144}
 };
 
 #define DATA_PTR(MEM_OBJ,INDEX) MEM_OBJ->getPtr( INDEX )
