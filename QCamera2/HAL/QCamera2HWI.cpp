@@ -1466,6 +1466,10 @@ int QCamera2HardwareInterface::initCapabilities(uint32_t cameraId,
         gCamCapability[cameraId]->preview_sizes_tbl_cnt = CAM0_PRVW_TBL_SIZE;
 
     } else if (gCamCapability[cameraId]->position == CAM_POSITION_FRONT) {
+        for (i = 0; i < CAM1_PIC_TBL_SIZE; i++)
+            gCamCapability[cameraId]->picture_sizes_tbl[i] = new_pic_sizes_cam1[i];
+        gCamCapability[cameraId]->picture_sizes_tbl_cnt = CAM1_PIC_TBL_SIZE;
+
         for (i = 0; i < CAM1_VID_TBL_SIZE; i++)
             gCamCapability[cameraId]->video_sizes_tbl[i] = new_vid_sizes_cam1[i];
         gCamCapability[cameraId]->video_sizes_tbl_cnt = CAM1_VID_TBL_SIZE;
