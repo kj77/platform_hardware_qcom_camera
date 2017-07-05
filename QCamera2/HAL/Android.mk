@@ -20,6 +20,8 @@ LOCAL_SRC_FILES := \
 LOCAL_CFLAGS = -Wall -Wextra
 #LOCAL_CFLAGS = -Werror
 
+TARGET_USE_VENDOR_CAMERA_EXT := true
+
 LOCAL_CFLAGS += -DHAS_MULTIMEDIA_HINTS
 
 #Debug logs are enabled
