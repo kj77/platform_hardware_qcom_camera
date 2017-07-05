@@ -51,7 +51,7 @@
 #define CEILING4(X)  (((X) + 0x0003) & 0xFFFC)
 #define CEILING2(X)  (((X) + 0x0001) & 0xFFFE)
 
-#define MAX_ZOOMS_CNT 79
+#define MAX_ZOOMS_CNT 61
 #define MAX_SIZES_CNT 24
 #define MAX_EXP_BRACKETING_LENGTH 32
 #define MAX_ROI 5
@@ -844,6 +844,7 @@ typedef struct {
     uint32_t settled;
     uint32_t exp_index;
     uint32_t line_count;
+    uint32_t unknown[4];
 } cam_ae_params_t;
 
 typedef struct {
@@ -1250,6 +1251,7 @@ typedef enum {
     CAM_INTF_PARM_FLASH_BRACKETING,
     CAM_INTF_PARM_GET_IMG_PROP,
 
+    CAM_INTF_PARM_UNKNOWN, // Increment CAM_INTF_PARM_MAX by 1
     CAM_INTF_PARM_MAX
 } cam_intf_parm_type_t;
 
