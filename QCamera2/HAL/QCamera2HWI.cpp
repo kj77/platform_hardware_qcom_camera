@@ -1329,7 +1329,7 @@ int QCamera2HardwareInterface::closeCamera()
     return rc;
 }
 
-#define CAM0_PIC_TBL_SIZE 19
+#define CAM0_PIC_TBL_SIZE 15
 static cam_dimension_t new_pic_sizes_cam0[CAM0_PIC_TBL_SIZE] = {
     {3264, 2448},
     {3200, 2400},
@@ -1348,7 +1348,7 @@ static cam_dimension_t new_pic_sizes_cam0[CAM0_PIC_TBL_SIZE] = {
     {320, 240}
 };
 
-#define CAM0_VID_TBL_SIZE 9
+#define CAM0_VID_TBL_SIZE 6
 static cam_dimension_t new_vid_sizes_cam0[CAM0_VID_TBL_SIZE] = {
     {1920, 1080},
     {1280, 720},
@@ -1358,7 +1358,7 @@ static cam_dimension_t new_vid_sizes_cam0[CAM0_VID_TBL_SIZE] = {
     {320, 240}
 };
 
-#define CAM0_PRVW_TBL_SIZE 9
+#define CAM0_PRVW_TBL_SIZE 6
 static cam_dimension_t new_prvw_sizes_cam0[CAM0_PRVW_TBL_SIZE] = {
     {1920, 1080},
     {1440, 1080},
@@ -1368,13 +1368,13 @@ static cam_dimension_t new_prvw_sizes_cam0[CAM0_PRVW_TBL_SIZE] = {
     {320, 240}
 };
 
-#define CAM1_VID_TBL_SIZE 8
+#define CAM1_VID_TBL_SIZE 2
 static cam_dimension_t new_vid_sizes_cam1[CAM1_VID_TBL_SIZE] = {
     {640, 480},
     {320, 240}
 };
 
-#define CAM1_PRVW_TBL_SIZE 8
+#define CAM1_PRVW_TBL_SIZE 3
 static cam_dimension_t new_prvw_sizes_cam1[CAM1_PRVW_TBL_SIZE] = {
     {640, 480},
     {576, 432},
