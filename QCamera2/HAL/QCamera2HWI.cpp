@@ -1392,6 +1392,16 @@ static cam_dimension_t new_prvw_sizes_cam1[CAM1_PRVW_TBL_SIZE] = {
     {176, 144}
 };
 
+#define CAM0_FPS_TBL_RANGE 1
+static cam_fps_range_t new_fps_ranges_cam0[CAM0_FPS_TBL_RANGE] = {
+    {7.5, 30}
+};
+
+#define CAM1_FPS_TBL_RANGE 1
+static cam_fps_range_t new_fps_ranges_cam1[CAM1_FPS_TBL_RANGE] = {
+    {7.5, 30}
+};
+
 #define DATA_PTR(MEM_OBJ,INDEX) MEM_OBJ->getPtr( INDEX )
 
 /*===========================================================================
@@ -1481,6 +1491,18 @@ int QCamera2HardwareInterface::initCapabilities(uint32_t cameraId,
         for (i = 0; i < CAM1_VID_TBL_SIZE; i++)
             gCamCapability[cameraId]->livesnapshot_sizes_tbl[i] = new_vid_sizes_cam1[i];
         gCamCapability[cameraId]->livesnapshot_sizes_tbl_cnt = CAM1_VID_TBL_SIZE;
+    }
+
+    // Inject modified FPS range
+        if (gCamCapability[cameraId]->position == CAM_POSITION_BACK) {
+        for (i = 0; i < CAM0_FPS_TBL_RANGE; i++)
+            gCamCapability[cameraId]->fps_ranges_tbl[i] = new_fps_ranges_cam0[i];
+        gCamCapability[cameraId]->fps_ranges_tbl_cnt = CAM0_FPS_TBL_RANGE;
+
+    } else if (gCamCapability[cameraId]->position == CAM_POSITION_FRONT) {
+        for (i = 0; i < CAM1_FPS_TBL_RANGE; i++)
+            gCamCapability[cameraId]->fps_ranges_tbl[i] = new_fps_ranges_cam1[i];
+        gCamCapability[cameraId]->fps_ranges_tbl_cnt = CAM1_FPS_TBL_RANGE;
     }
 
     //copy the preview sizes and video sizes lists because they
